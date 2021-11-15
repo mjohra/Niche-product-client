@@ -1,0 +1,23 @@
+
+.testimonial .row{
+    margin-top: 30px auto;
+}
+.review{
+    margin:40px auto;
+}
+.profile{
+    padding:70px 10px 10px;
+    background-color:honeydew;
+}
+.title-header{
+    font-family: 'Yuji Syuku', serif;
+    color:#f3a374;
+}
+.title-name{
+    font-family: 'Yuji Syuku', serif;
+    color:#fa7f94;;
+    font-weight:700;
+}
+.icon-color{
+    color:#ec9360;
+}
