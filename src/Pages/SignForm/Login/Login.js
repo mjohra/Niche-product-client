@@ -1,13 +1,13 @@
 import React from 'react';
 import {Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link,useLocation,useHistory } from "react-router-dom";
+import { Link,useLocation,useNavigate } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
 import login from '../../../images/login.jpg';
 import './Login.css';
 const Login = () => {
     const{signInUsingGoogle,processLogin,handleEmailChange,handlePasswordChange, setIsLoading,setUser,setError,saveUser,user}=useAuth();
     const location=useLocation();
-    const history=useHistory();
+    const navigate=useNavigate();
     const redirect=location.state?.from ||'/home';
 
     const handleGoogleSignIn=()=>{
@@ -17,7 +17,7 @@ const Login = () => {
         console.log(user);
         saveUser(user.email, user.displayName, "PUT");
         setUser(user);
-        history.push(redirect);
+        navigate(redirect);
       })
       .finally(() => setIsLoading(false));
     }
@@ -27,7 +27,7 @@ const Login = () => {
         processLogin()
         .then((result) => {
           const user = result.user;
-          history.push(redirect);
+          navigate(redirect);
           console.log(user);
           setError("");
         })

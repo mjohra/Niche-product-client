@@ -1,21 +1,11 @@
 import React from "react";
-import DashboardHome from "../DashboardHome/DashboardHome";
-import MakeAdmin from "../MakeAdmin/MakeAdmin";
-import AddProduct from "../AddProduct/AddProduct";
-import ManageProduct from "../ManageProduct/ManageProduct";
-import MyOrder from "../MyOrder/MyOrder";
-import ManageOrder from "../ManageOrder/ManageOrder";
-import Payment from "../Payment/Payment";
-import Review from "../Review/Review";
-import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./Dashboard.css";
 import useAuth from "../../../hooks/useAuth";
-import AdminRoute from "../../SignForm/AdminRoute/AdminRoute";
-import PrivateRoute from "../../SignForm/PrivateRoute/PrivateRoute";
 import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
-  let { path, url } = useRouteMatch();
+  
   const { admin, user, logOut } = useAuth();
   return (
     <div className="container-fluid">
@@ -35,7 +25,7 @@ const Dashboard = () => {
                 <Link
                   className="nav-link align-center px-0"
                   style={{ textDecoration: "none" }}
-                  to={`${url}`}
+                  to='/dashboard'
                 >
                   <i className="d_icon fas fa-th-list me-3 "></i>
                   <span className="ms-1 d-none d-sm-inline">Dashboard</span>
@@ -57,7 +47,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/addProduct`}
+                      to={`/dashboard/addProduct`}
                     >
                       <i className="d_icon fas fa-tags me-3"></i>
                       <span className="ms-md-1 d-none d-sm-inline">
@@ -70,7 +60,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link align-center px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/makeAdmin`}
+                      to={`/dashboard/makeAdmin`}
                     >
                       <i className="d_icon fas fa-users-cog me-3"></i>
                       <span className="d-none d-sm-inline">Make Admin</span>
@@ -81,7 +71,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link align-center px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/manageProduct`}
+                      to={`/dashboard/manageProduct`}
                     >
                       <i className="d_icon ms-1 fas fa-receipt me-3"></i>
                       <span className="ms-2 d-none d-sm-inline">
@@ -94,7 +84,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link align-center px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/manageOrder`}
+                      to={`/dashboard/manageOrder`}
                     >
                       <i className="d_icon fas fa-cash-register me-3"></i>
                       <span className="ms-1 d-none d-sm-inline">
@@ -119,7 +109,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link align-center px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/payment`}
+                      to={`/dashboard/payment`}
                     >
                       <i className="d_icon far fa-credit-card me-3 "></i>
                       <span className="ms-1 d-none d-sm-inline">Payment</span>
@@ -129,7 +119,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link align-center px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/myOrder`}
+                      to={`/dashboard/myOrder`}
                     >
                       <i className="d_icon fas fa-shopping-cart me-3"></i>
                       <span className="ms-1 d-none d-sm-inline">My Order</span>
@@ -139,7 +129,7 @@ const Dashboard = () => {
                     <Link
                       className="nav-link align-center px-0"
                       style={{ textDecoration: "none" }}
-                      to={`${url}/review`}
+                      to={`/dashboard/review`}
                     >
                       <i className="d_icon fas fa-comment-dots me-3"></i>
                       <span className="ms-1 d-none d-sm-inline">Review</span>
@@ -159,32 +149,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="col">
-          <Switch>
-            <Route exact path={path}>
-              <DashboardHome></DashboardHome>
-            </Route>
-            <AdminRoute exact path={`${path}/makeAdmin`}>
-              <MakeAdmin></MakeAdmin>
-            </AdminRoute>
-            <AdminRoute exact path={`${path}/addProduct`}>
-              <AddProduct></AddProduct>
-            </AdminRoute>
-            <AdminRoute exact path={`${path}/manageOrder`}>
-              <ManageOrder></ManageOrder>
-            </AdminRoute>
-            <AdminRoute exact path={`${path}/manageProduct`}>
-              <ManageProduct></ManageProduct>
-            </AdminRoute>
-            <PrivateRoute exact path={`${path}/payment`}>
-              <Payment></Payment>
-            </PrivateRoute>
-            <PrivateRoute exact path={`${path}/myOrder`}>
-              <MyOrder></MyOrder>
-            </PrivateRoute>
-            <PrivateRoute exact path={`${path}/review`}>
-              <Review></Review>
-            </PrivateRoute>
-          </Switch>
+          <Outlet/>
         </div>
       </div>
     </div>
