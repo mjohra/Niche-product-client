@@ -10,3 +10,4 @@
 4. Different Dashboard for user and admin
 5. Product Management
 6. Order Management
+7. Email address: admin@admin.com with password: 123456
